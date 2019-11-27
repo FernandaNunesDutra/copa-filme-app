@@ -1,1 +1,25 @@
 /* You can add global styles to this file, and also import other style files */
+@import '~bootstrap/dist/css/bootstrap.min.css';
+
+.container{
+    margin: 40px;
+}
+
+body{
+    background-color: #EBECF0
+}
+
+.mainly-card{
+    background-color: #A8A8A8;
+    text-align: center;
+}
+
+.mainly-card p{
+    color: white;
+    
+}
+
+.mainly-card h5{
+    color: #EBECF0;
+    
+}
