@@ -1,0 +1,15 @@
+.title{
+    font-family: 'Satisfy', cursive;
+    color: whitesmoke;
+    font-size: 100px;
+    margin: 15px;
+}
+
+.header{
+    font-family: 'Satisfy', cursive;
+    color: whitesmoke;
+}
+
+.popcorn-image{
+    float: right;
+}
