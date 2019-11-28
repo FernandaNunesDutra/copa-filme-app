@@ -14,10 +14,20 @@ html, body {
     height: 100%;
 }
 
-.movie-card{
+.movie-card {
     padding: 5px;
     font-family: "Satisfy", cursive;
     color:  white;
+}
+
+button {
+    padding-bottom: 5px;
+    font-size: large;
+    font-family: "Satisfy", cursive;
+    color:  white;
+    background-color: black;
+    width: 200px;
+    height: 80px;
 }
 
 .card-body{

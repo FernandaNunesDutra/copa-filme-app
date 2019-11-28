@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MovieService } from 'src/app/services/movie-service';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
 import MovieListDto from 'src/app/dto/movies-list-dto';
+import Movie from 'src/app/models/movie-model';
 
 @Component({
   selector: 'app-movie-list',
@@ -11,8 +12,9 @@ import MovieListDto from 'src/app/dto/movies-list-dto';
 
 export class MovieListComponent implements OnInit {
 
-  movies: any = [];
-  selectMoviesFrorm: FormGroup;
+  selectedMovies = new Map();;
+  selectMoviesForm: FormGroup;
+  allMovies: Movie[];
 
   constructor(
     public movieService: MovieService,
@@ -21,19 +23,43 @@ export class MovieListComponent implements OnInit {
 
   ngOnInit() {
     this.getAllMovies();
-    this.selectMoviesFrorm = this.fb.group({
-      selectedMovies: [],
+    this.selectMoviesForm = this.fb.group({
+      movies: new FormArray([]),
     })
   }
 
   async getAllMovies() {
     return this.movieService.getAll().subscribe((data: MovieListDto) => {
-      this.movies = data.movies;
+      this.allMovies = data.movies;
+      this.buildMovies();
     });
   }
 
-  submitForm() {
+  buildMovies() {
+    const arr = this.allMovies.map(movie => {
+      return this.fb.control(false);
+    });
+    this.selectMoviesForm = this.fb.group({
+      movies: this.fb.array(arr),
+    })
+  }
+
+  onSubmit() {
+    // console.log(this.selectMoviesForm.controls.movies.controls);
+  }
+
+  onChange(movie, event) {
+
+    if (event.target.checked) {
+      this.selectedMovies.set(movie.code, movie);
+    } else {
+      this.selectedMovies.delete(movie.code);
+    }
 
   }
+
+  get movies() {
+    return this.selectMoviesForm.get('movies');
+  };
 
 }

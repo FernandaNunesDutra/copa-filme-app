@@ -16,15 +16,18 @@
       </div>
     </div>
     <div>
-      <form [formGroup]="selectMoviesFrorm" (ngSubmit)="submitForm()"  class="row movies-body">
-        <div class="col-3 movie-card" *ngFor="let movie of movies">
+      <form [formGroup]="selectMoviesForm" (ngSubmit)="onSubmit()" *ngIf="selectMoviesForm" class="row movies-body">
+        <div class="col-12">
+            <button type="submit" class="btn btn-dark">Gerar Meu Campeonato</button>
+        </div>
+        <div class="col-3 movie-card" *ngFor="let movie of movies.controls let i=index">
           <div class="card" style="width: 16rem;height: 8rem;">
             <div class="card h-100 card-body">
-              <h5 class="card-title"> 
-                <input type="checkbox" formControlName="selectedMovies">
-                {{movie.title}}
+              <h5 class="card-title">
+                <input type="checkbox"  [formControl]="movie" (change)="onChange(movie, $event)">
+                {{allMovies[i].title}}
               </h5>
-              <p class="card-text">{{movie.year}}</p>
+              <p class="card-text">{{allMovies[i].year}}</p>
             </div>
           </div>
         </div>
