@@ -12,7 +12,7 @@ import Movie from 'src/app/models/movie-model';
 
 export class MovieListComponent implements OnInit {
 
-  selectedMovies = new Map();;
+  const selectedMovies = new Map();;
   selectMoviesForm: FormGroup;
   allMovies: Movie[];
 
@@ -59,7 +59,7 @@ export class MovieListComponent implements OnInit {
   }
 
   get movies() {
-    return this.selectMoviesForm.get('movies');
+    return <FormArray>this.selectMoviesForm.get('movies');
   };
 
 }
