@@ -14,20 +14,27 @@ html, body {
     height: 100%;
 }
 
+.btn-danger{
+    float: right;
+    background-color: #b30000;
+    padding-bottom: 5px;
+    font-size: 15px;
+    width: 205px;
+    height: 80px;
+}
+
+.errorMessage{
+    color: #b30000;
+    font-size: 25px;
+    font-weight: 15px;
+    margin: 15px;
+    font-family: "Satisfy", cursive;
+}
+
 .movie-card {
     padding: 5px;
     font-family: "Satisfy", cursive;
     color:  white;
-}
-
-button {
-    padding-bottom: 5px;
-    font-size: large;
-    font-family: "Satisfy", cursive;
-    color:  white;
-    background-color: black;
-    width: 200px;
-    height: 80px;
 }
 
 .card-body{

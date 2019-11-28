@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { MovieService } from 'src/app/services/movie-service';
-import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
+import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
 import MovieListDto from 'src/app/dto/movies-list-dto';
 import Movie from 'src/app/models/movie-model';
+import { checkboxValidator } from '../validator/checkbox-validator';
 
 @Component({
   selector: 'app-movie-list',
@@ -12,10 +13,14 @@ import Movie from 'src/app/models/movie-model';
 
 export class MovieListComponent implements OnInit {
 
+  maxSelected = 8;
+  
   selectedMovies = new Map();
   selectMoviesForm: FormGroup;
   allMovies: Movie[];
-
+  
+  numCheckedError = false;
+  
   constructor(
     public movieService: MovieService,
     public fb: FormBuilder,
@@ -24,7 +29,7 @@ export class MovieListComponent implements OnInit {
   ngOnInit() {
     this.getAllMovies();
     this.selectMoviesForm = this.fb.group({
-      movies: new FormArray([]),
+      movies: new FormArray([]), 
     })
   }
 
@@ -45,7 +50,13 @@ export class MovieListComponent implements OnInit {
   }
 
   onSubmit() {
-    // console.log(this.selectMoviesForm.controls.movies.controls);
+    
+    const isValid = this.isMovieCheckValid;
+    this.numCheckedError = !isValid;
+    
+    if(isValid){
+
+    }
   }
 
   onChange(movie, event) {
@@ -55,7 +66,14 @@ export class MovieListComponent implements OnInit {
     } else {
       this.selectedMovies.delete(movie.code);
     }
+  }
 
+  get isMovieCheckValid(){
+    return this.howManyChecked == this.maxSelected;
+  }
+
+  get howManyChecked(){
+    return this.selectedMovies.size;
   }
 
   get movies() {
