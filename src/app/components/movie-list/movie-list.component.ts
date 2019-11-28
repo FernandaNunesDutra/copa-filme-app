@@ -22,7 +22,7 @@ export class MovieListComponent implements OnInit {
   ngOnInit() {
     this.getAllMovies();
     this.selectMoviesFrorm = this.fb.group({
-      selectedMovies: [''],
+      selectedMovies: [],
     })
   }
 
@@ -32,5 +32,8 @@ export class MovieListComponent implements OnInit {
     });
   }
 
+  submitForm() {
+
+  }
 
 }
