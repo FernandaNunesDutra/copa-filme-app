@@ -12,7 +12,7 @@ import Movie from 'src/app/models/movie-model';
 
 export class MovieListComponent implements OnInit {
 
-  const selectedMovies = new Map();;
+  selectedMovies = new Map();
   selectMoviesForm: FormGroup;
   allMovies: Movie[];
 
