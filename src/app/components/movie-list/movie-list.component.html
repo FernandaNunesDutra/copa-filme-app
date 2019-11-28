@@ -1,0 +1,34 @@
+<div class="background-popcorn">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <h1 class="title">
+          Campeonato de Filmes
+        </h1>
+      </div>
+      <div class="col-12">
+        <h3 class="header">
+          <b>Fase de Seleção</b>
+          <br>
+          Selecione 8 filmes que você deseja que entrem na competição
+          e depois pressione o botão "Gerar Meu Campeonato" para prosseguir.
+        </h3>
+      </div>
+    </div>
+    <div>
+      <form [formGroup]="selectMoviesFrorm" (ngSubmit)="submitForm()"  class="row movies-body">
+        <div class="col-3 movie-card" *ngFor="let movie of movies">
+          <div class="card" style="width: 16rem;height: 8rem;">
+            <div class="card h-100 card-body">
+              <h5 class="card-title">
+                <input type="checkbox" formControlName="selectedMovies">
+                {{movie.title}}
+              </h5>
+              <p class="card-text">{{movie.year}}</p>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

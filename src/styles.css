@@ -1,8 +1,46 @@
 /* You can add global styles to this file, and also import other style files */
-@import '~bootstrap/dist/css/bootstrap.min.css';
-@import url('https://fonts.googleapis.com/css?family=Satisfy|Roboto|Gupter&display=swap');
+@import "~bootstrap/dist/css/bootstrap.min.css";
+@import url("https://fonts.googleapis.com/css?family=Satisfy|Roboto|Gupter&display=swap");
 
-body{
-    background-color: #0097E6;    
+html, body { 
+    height:100vh;
+    background-color: #0097E6;  
 }
 
+.background-popcorn{
+    background-image: url("./assets/images/popcorn.png");  
+    background-repeat:no-repeat;
+    background-position: bottom right;
+    height: 100%;
+}
+
+.movie-card{
+    padding: 5px;
+    font-family: "Satisfy", cursive;
+    color:  white;
+}
+
+.card-body{
+    background-color: rgba(10,23,55,0); 
+    color:  black;
+}
+
+.title{
+    font-family: "Satisfy", cursive;
+    color: whitesmoke;
+    font-size: 100px;
+    margin: 15px;
+}
+
+.header{
+    font-family: "Satisfy", cursive;
+    color: black;
+}
+
+.popcorn-image{
+    float: right;
+}
+
+.movies-body{
+    padding: 20px;
+}
