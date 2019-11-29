@@ -1,31 +1,42 @@
-import { TestBed, async } from "@angular/core/testing";
-import { AppComponent } from "./movie-list.component";
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-describe("AppComponent", () => {
+import { MovieListComponent } from './movie-list.component';
+import { MovieService } from 'src/app/services/movie-service';
+import { HttpClient } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { MovieResultComponent } from '../movie-result/movie-result.component';
+import { RouterModule } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
+
+describe('MovieListComponent', () => {
+  let component: MovieListComponent;
+  let fixture: ComponentFixture<MovieListComponent>;
+
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        AppComponent
+      declarations: [ MovieListComponent, MovieResultComponent ],
+      providers: [
+        MovieService,
+        HttpClient,
       ],
-    }).compileComponents();
+      imports: [
+        RouterModule.forRoot([]),
+        ReactiveFormsModule,
+        HttpClientTestingModule,
+        RouterTestingModule
+      ]
+    })
+    .compileComponents();
   }));
 
-  it("should create the app", () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app).toBeTruthy();
-  });
-
-  it(`should have as title 'copa-filme-app'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual("copa-filme-app");
-  });
-
-  it("should render title", () => {
-    const fixture = TestBed.createComponent(AppComponent);
+  beforeEach(() => {
+    fixture = TestBed.createComponent(MovieListComponent);
+    component = fixture.componentInstance;
     fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector(".content span").textContent).toContain("copa-filme-app app is running!");
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
   });
 });
