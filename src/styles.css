@@ -7,6 +7,19 @@ html, body {
     background-color: #0097E6;  
 }
 
+table{
+    background-color: #b30000;
+    font-family: "Satisfy", cursive;
+    font-size: 50px;
+    color: white;
+    margin-top: 10px;
+    align-content: center;
+}
+
+td{
+    color: white;
+}
+
 .background-popcorn{
     background-image: url("./assets/images/popcorn.png");  
     background-repeat:no-repeat;

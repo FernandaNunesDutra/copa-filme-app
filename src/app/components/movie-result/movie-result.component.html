@@ -1,0 +1,19 @@
+<div class="col-12">
+    <h3 class="header">
+        <b>Resultado Final</b>
+        <br>
+        Veja o resultado final do Campeonato de Filme de forma simples e rápida.
+    </h3>
+</div>
+<div class="col-12">
+    <table class="table" *ngIf="first && second">
+        <tr>
+            <td><b>1°)</b></td>
+            <td>{{first.title}}</td>
+        </tr>
+        <tr>
+            <td><b>2°)</b></td>
+            <td>{{second.title}}</td>
+        </tr>
+    </table>
+</div>
