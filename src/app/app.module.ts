@@ -12,11 +12,13 @@ import { ApiService } from "./services/api-service";
 
 /* Components */
 import { MovieListComponent } from './components/movie-list/movie-list.component';
+import { MovieResultComponent } from './components/movie-result/movie-result.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MovieListComponent,
+    MovieResultComponent,
   ],
   imports: [
     BrowserModule,

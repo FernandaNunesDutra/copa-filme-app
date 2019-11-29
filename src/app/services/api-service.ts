@@ -17,21 +17,20 @@ export class ApiService<T> {
         })
     }
 
-    // // POST
-    // CreateBug(data): Observable<Bug> {
-    //     return this.http.post<Bug>(this.baseurl + '/bugtracking/', JSON.stringify(data), this.httpOptions)
-    //         .pipe(
-    //             retry(1),
-    //             catchError(this.errorHandl)
-    //         )
-    // }
+    get(data, url): Observable<T> {
+        return this.http.post<T>(`${this.URL_API}/${url}`, JSON.stringify(data), this.httpOptions)
+            .pipe(
+                retry(1),
+                catchError(this.errorHandle)
+            );
+    }
 
     getAll(url): Observable<T> {
         return this.http.get<T>(`${this.URL_API}/${url}`)
             .pipe(
                 retry(1),
                 catchError(this.errorHandle)
-            )
+            );
     }
 
     errorHandle(error) {

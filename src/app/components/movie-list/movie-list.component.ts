@@ -3,7 +3,7 @@ import { MovieService } from 'src/app/services/movie-service';
 import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
 import MovieListDto from 'src/app/dto/movies-list-dto';
 import Movie from 'src/app/models/movie-model';
-import { checkboxValidator } from '../validator/checkbox-validator';
+import { Router, NavigationExtras } from '@angular/router';
 
 @Component({
   selector: 'app-movie-list',
@@ -13,23 +13,23 @@ import { checkboxValidator } from '../validator/checkbox-validator';
 
 export class MovieListComponent implements OnInit {
 
-  maxSelected = 8;
-  
-  selectedMovies = new Map();
-  selectMoviesForm: FormGroup;
-  allMovies: Movie[];
-  
-  numCheckedError = false;
-  
+  private maxSelected = 8;
+  private selectedMovies = new Map();
+  private selectMoviesForm: FormGroup;
+  private allMovies: Movie[];
+
+  private numCheckedError = false;
+
   constructor(
-    public movieService: MovieService,
-    public fb: FormBuilder,
+    private movieService: MovieService,
+    private fb: FormBuilder,
+    private router: Router
   ) { }
 
   ngOnInit() {
     this.getAllMovies();
     this.selectMoviesForm = this.fb.group({
-      movies: new FormArray([]), 
+      movies: new FormArray([]),
     })
   }
 
@@ -50,13 +50,29 @@ export class MovieListComponent implements OnInit {
   }
 
   onSubmit() {
-    
-    const isValid = this.isMovieCheckValid;
-    this.numCheckedError = !isValid;
-    
-    if(isValid){
 
+    const isValid = this.isMovieCheckValid;
+
+    this.numCheckedError = !isValid;
+
+    const movies = [];
+
+    if (isValid) {
+      for (const [key, value] of this.selectedMovies.entries()) {
+        movies.push(value);
+      }
+      this.router.navigate(['/movie-result'], this.queryParamRoute(movies));
     }
+  }
+
+  queryParamRoute(movies){
+    const navigationExtras: NavigationExtras = {
+      queryParams: {
+        selectedMovies: JSON.stringify(movies)
+      }
+    };
+
+    return navigationExtras;
   }
 
   onChange(movie, event) {
@@ -68,11 +84,11 @@ export class MovieListComponent implements OnInit {
     }
   }
 
-  get isMovieCheckValid(){
+  get isMovieCheckValid() {
     return this.howManyChecked == this.maxSelected;
   }
 
-  get howManyChecked(){
+  get howManyChecked() {
     return this.selectedMovies.size;
   }
 
