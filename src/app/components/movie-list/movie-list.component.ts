@@ -85,7 +85,7 @@ export class MovieListComponent implements OnInit {
   }
 
   get isMovieCheckValid() {
-    return this.howManyChecked == this.maxSelected;
+    return this.howManyChecked === this.maxSelected;
   }
 
   get howManyChecked() {
